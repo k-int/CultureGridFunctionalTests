@@ -14,7 +14,7 @@ class ProviderSpec extends GebReportingSpec {
 			to HomePageLoggedIn
 		expect:
 			at HomePageLoggedIn
-			provider.click();
+			menu.provider.click();
 		waitFor {at ProviderPage}
 			select("Aberdeen")
 	}

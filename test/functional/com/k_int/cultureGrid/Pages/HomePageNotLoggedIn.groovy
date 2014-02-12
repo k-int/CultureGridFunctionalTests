@@ -4,7 +4,7 @@ import geb.Page
 
 class HomePageNotLoggedIn extends Page {
 //	static url = "dpp"
-	static at = {(title == "Culture Grid Administration - Home Page") || (title == "Culture Grid Administration - Registered User Home")};
+	static at = {(title.endsWith("Home Page")) || (title.endsWith("Registered User Home"))};
 	
 	static content = {
 		login { $("a", text: "Login")}
