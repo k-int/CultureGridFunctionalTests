@@ -1,4 +1,4 @@
-package com.k_int.cultureGrid.Provider1;
+package com.k_int.cultureGrid.Provider;
 
 import geb.spock.GebReportingSpec;
 import spock.lang.Stepwise
