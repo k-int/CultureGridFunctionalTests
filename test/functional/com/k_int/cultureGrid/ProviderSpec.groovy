@@ -3,19 +3,20 @@ package com.k_int.cultureGrid;
 import geb.spock.GebReportingSpec;
 import spock.lang.Stepwise
 
-import com.k_int.cultureGrid.Pages.HomePageLoggedIn
-import com.k_int.cultureGrid.Pages.ProviderPage
+import com.k_int.cultureGrid.Pages.Home.LoggedInHome;
+import com.k_int.cultureGrid.Pages.Provider.ProviderHome;
 
 @Stepwise
 class ProviderSpec extends GebReportingSpec {
 
 	def "Provider list displays"() {
 		given:
-			to HomePageLoggedIn
+			to LoggedInHome
 		expect:
-			at HomePageLoggedIn
+			at LoggedInHome
 			menu.provider.click();
-		waitFor {at ProviderPage}
-			select("Aberdeen")
+		waitFor 30D, {at ProviderHome}
+//			select("Aberdeen")
+			createOrSelect("_functest1_", "**Functional Test 1**")
 	}
 }

@@ -1,4 +1,4 @@
-package com.k_int.cultureGrid.Pages
+package com.k_int.cultureGrid.Pages.Depositor
 
 import geb.Page
 

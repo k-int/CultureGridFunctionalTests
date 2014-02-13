@@ -1,10 +1,10 @@
-package com.k_int.cultureGrid.Pages
+package com.k_int.cultureGrid.Pages.Editor
 
 import geb.Page
 
 import com.k_int.cultureGrid.Modules.MenuOptions
 
-class Editor extends Page {
+class EditorHome extends Page {
 	static url = "edit/home"
 	static at = {title.endsWith("Editor Home")};
 	

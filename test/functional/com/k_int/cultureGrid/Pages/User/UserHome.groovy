@@ -1,10 +1,10 @@
-package com.k_int.cultureGrid.Pages
+package com.k_int.cultureGrid.Pages.User
 
 import geb.Page
 
 import com.k_int.cultureGrid.Modules.MenuOptions
 
-class UserAdministration extends Page {
+class UserHome extends Page {
 	static url = "admin/users"
 	static at = {title.endsWith("User Administration")};
 	
