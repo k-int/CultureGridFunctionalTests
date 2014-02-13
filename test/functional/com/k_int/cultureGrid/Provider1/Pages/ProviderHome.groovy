@@ -1,4 +1,4 @@
-package com.k_int.cultureGrid.provider.Pages;
+package com.k_int.cultureGrid.Provider1.Pages;
 
 import geb.error.RequiredPageContentNotPresent
 import geb.Page
