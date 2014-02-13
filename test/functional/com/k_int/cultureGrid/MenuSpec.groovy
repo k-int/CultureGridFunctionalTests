@@ -3,18 +3,18 @@ package com.k_int.cultureGrid;
 import geb.spock.GebReportingSpec;
 import spock.lang.Stepwise
 
-import com.k_int.cultureGrid.Pages.DataPush.DataPushHome;
-import com.k_int.cultureGrid.Pages.Depositor.DepositorHome;
-import com.k_int.cultureGrid.Pages.Editor.EditorHome;
-import com.k_int.cultureGrid.Pages.Home.LoggedInHome;
+import com.k_int.cultureGrid.DataPush.Pages.DataPushHome;
+import com.k_int.cultureGrid.Depositor.Pages.DepositorHome;
+import com.k_int.cultureGrid.Editor.Pages.EditorHome;
+import com.k_int.cultureGrid.Home.Pages.LoggedInHome;
 import com.k_int.cultureGrid.Pages.MediaFormats.MediaFormatsHome;
 import com.k_int.cultureGrid.Pages.OAI.OAIHome;
 import com.k_int.cultureGrid.Pages.Privileges.PrivilegesHome;
-import com.k_int.cultureGrid.Pages.Provider.ProviderHome;
 import com.k_int.cultureGrid.Pages.Reports.ReportsHome;
 import com.k_int.cultureGrid.Pages.UpdateRequest.UpdateRequestHome;
 import com.k_int.cultureGrid.Pages.Upload.UploadHome;
 import com.k_int.cultureGrid.Pages.User.UserHome;
+import com.k_int.cultureGrid.provider.Pages.ProviderHome;
 
 @Stepwise
 class MenuSpec extends GebReportingSpec {
