@@ -4,7 +4,7 @@ import geb.spock.GebReportingSpec;
 import spock.lang.Stepwise
 
 import com.k_int.cultureGrid.Home.Pages.LoggedInHome;
-import com.k_int.cultureGrid.provider.Pages.ProviderHome;
+import com.k_int.cultureGrid.Provider.Pages.ProviderHome;
 
 @Stepwise
 class ProviderSpec extends GebReportingSpec {
