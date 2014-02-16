@@ -1,14 +1,11 @@
 package com.k_int.cultureGrid.Upload.Pages
 
-import geb.Page
+import com.k_int.cultureGrid.Generic.BasePage
 
-import com.k_int.cultureGrid.Modules.MenuOptions
-
-class UploadHome extends Page {
+class UploadHome extends BasePage {
 	static url = "media/mediaUpload"
-	static at = {title.endsWith("Culture Grid - Upload")};
+	static at = {title.endsWith("Upload")};
 	
 	static content = {
-		menu {module MenuOptions}
 	}
 }

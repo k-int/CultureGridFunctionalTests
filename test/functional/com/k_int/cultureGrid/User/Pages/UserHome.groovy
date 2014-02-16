@@ -1,14 +1,22 @@
 package com.k_int.cultureGrid.User.Pages
 
-import geb.Page
+import com.k_int.cultureGrid.Generic.BasePage
 
-import com.k_int.cultureGrid.Modules.MenuOptions
-
-class UserHome extends Page {
+class UserHome extends BasePage {
 	static url = "admin/users"
 	static at = {title.endsWith("User Administration")};
-	
+
+	static def createFieldMap(id, name, password, passwordConfirm, email) {
+		return(["userName" : id,
+			    "personalName" : name,
+				"passwordMain" : password,
+				"passwordConf" : passwordConfirm,
+				"contact" : email])
+	}
+
 	static content = {
-		menu {module MenuOptions}
+		createSelect {id, name, password, passwordConfirm, email ->
+			createOrSelect(id, createFieldMap(id, name, password, passwordConfirm, email), "submit_create", UserHome, UserDetails) 
+		}
 	}
 }

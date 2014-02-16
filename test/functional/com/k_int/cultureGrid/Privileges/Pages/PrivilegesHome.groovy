@@ -1,14 +1,11 @@
 package com.k_int.cultureGrid.Privileges.Pages
 
-import geb.Page
+import com.k_int.cultureGrid.Generic.BasePage
 
-import com.k_int.cultureGrid.Modules.MenuOptions
-
-class PrivilegesHome extends Page {
+class PrivilegesHome extends BasePage {
 	static url = "admin/grants"
 	static at = {title.endsWith("Privilege Administration")};
 	
 	static content = {
-		menu {module MenuOptions}
 	}
 }

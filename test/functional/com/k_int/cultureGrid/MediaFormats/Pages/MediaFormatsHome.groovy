@@ -1,14 +1,11 @@
 package com.k_int.cultureGrid.MediaFormats.Pages
 
-import geb.Page
+import com.k_int.cultureGrid.Generic.BasePage
 
-import com.k_int.cultureGrid.Modules.MenuOptions
-
-class MediaFormatsHome extends Page {
+class MediaFormatsHome extends BasePage {
 	static url = "media/listFormats"
-	static at = {title.endsWith("Culture Grid - Media format editor")};
+	static at = {title.endsWith("Media format editor")};
 	
 	static content = {
-		menu {module MenuOptions}
 	}
 }

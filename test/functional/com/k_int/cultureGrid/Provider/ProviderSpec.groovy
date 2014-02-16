@@ -36,7 +36,7 @@ class ProviderSpec extends GebReportingSpec {
 			to ProviderHome
 		expect:
 			at ProviderHome
-			createOrSelect(FUNC_TEST_1_ID, FUNC_TEST_1_NAME)
+			createSelect(FUNC_TEST_1_ID, FUNC_TEST_1_NAME)
 		and:
 			at ProviderDetails
 			checkId(FUNC_TEST_1_ID)

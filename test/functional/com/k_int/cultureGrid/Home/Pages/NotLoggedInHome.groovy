@@ -1,8 +1,8 @@
 package com.k_int.cultureGrid.Home.Pages
 
-import geb.Page
+import com.k_int.cultureGrid.Generic.BasePage
 
-class NotLoggedInHome extends Page {
+class NotLoggedInHome extends BasePage {
 //	static url = "dpp"
 	static at = {(title.endsWith("Home Page")) || (title.endsWith("Registered User Home"))};
 	
