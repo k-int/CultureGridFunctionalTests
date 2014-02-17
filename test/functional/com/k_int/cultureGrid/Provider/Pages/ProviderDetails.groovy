@@ -24,6 +24,16 @@ class ProviderDetails extends BasePage {
 		verifyDetails {id, newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName ->
 			checkId(id) &&
 			verifyDetailsBase(createFieldMap(newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName))
-		} 
+		}
+		addUser {userId ->
+			getSetSelect("userId", userId)
+			getInputField("submit_grant_user").click()
+		}
+		verifyUser {userId ->
+			waitFor {($("a", text: userId).size() == 1)}
+		}
+		removeUser {userId ->
+			$("a", text: "revoke", href: endsWith("/" + userId)).click()
+		}
 	}
 }

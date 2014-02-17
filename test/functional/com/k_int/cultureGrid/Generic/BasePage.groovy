@@ -5,13 +5,15 @@ import geb.Page
 import com.k_int.cultureGrid.Modules.MenuOptions
 
 class BasePage extends Page {
-
 	static content = {
 		// Content that can be used by all the pages
 		menu {module MenuOptions}
-		getInputField {fieldName -> $("form").find("input", name: fieldName)}
-		getSet {fieldName, value -> 
-			def field =getInputField(fieldName)
+		getField {type, fieldName ->
+				$("form").find(type, name: fieldName)
+		}
+		getInputField {fieldName -> getField("input", fieldName)}
+		getSetType {type, fieldName, value -> 
+			def field = getField(type, fieldName)
 			if (field.size() == 1) {
 				if (value != null) {
 					field.value(value)
@@ -19,13 +21,15 @@ class BasePage extends Page {
 				field.value()
 			}
 		}
+		getSetInput {fieldName, value -> getSetType("input", fieldName, value)} 
+		getSetSelect {fieldName, value -> getSetType("select", fieldName, value)}
 		link(required: false) {id -> $("a", text: id)}
 		select {
 			id, detailsPage -> link(id).click(detailsPage)
 		}
 		populateFields {fieldMap ->
 			fieldMap.each() {fieldName, value ->
-				getSet(fieldName, value)
+				getSetInput(fieldName, value)
 			}
 		}
 		createOrSelect {id, fieldMap, createButtonName, homePage, detailsPage ->
@@ -45,7 +49,7 @@ class BasePage extends Page {
 		verifyDetailsBase {fieldMap ->
 			def result = true
 			fieldMap.each() {fieldName, value ->
-				if (!value.equals(getSet(fieldName, null))) {
+				if (!value.equals(getSetInput(fieldName, null))) {
 					result = false
 				}
 			}
