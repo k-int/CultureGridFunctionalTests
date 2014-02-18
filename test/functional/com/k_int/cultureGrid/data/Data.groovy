@@ -23,4 +23,9 @@ class Data {
 	static def PROVIDER_TEST_1_MEDIA_PATH = "/func1/media/store/path"
 	static def PROVIDER_TEST_1_NAME = "**Functional Test 1**"
 
+	// Variables used for CollectionsSpec test
+
+	static def TESTING_COLLECTION = "FunctionalTest"
+	static def TESTING_COLLECTION_USER = "ACCES"
+	static def TESTING_COLLECTION_CHILD = "Collection-639"
 }
