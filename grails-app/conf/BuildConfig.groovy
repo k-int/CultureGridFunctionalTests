@@ -53,12 +53,6 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        // runtime 'mysql:mysql-connector-java:5.1.27'
-        // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
-        test("org.seleniumhq.selenium:selenium-htmlunit-driver:${seleniumVersion}")
-//		{
-//            exclude 'xml-apis'
-//      }
         test "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}"
         test "org.seleniumhq.selenium:selenium-support:${seleniumVersion}"
         
@@ -68,22 +62,8 @@ grails.project.dependency.resolution = {
 
     plugins {
         // plugins for the build system only
-        build ":tomcat:7.0.50"
+        build ":tomcat:7.0.50.1"
 
-        // plugins for the compile step
-        compile ":scaffolding:2.0.1"
-        compile ':cache:1.1.1'
-
-        // plugins needed at runtime but not for compilation
-        runtime ":hibernate:3.6.10.7" // or ":hibernate4:4.1.11.6"
-        runtime ":database-migration:1.3.8"
-        runtime ":jquery:1.10.2.2"
-        runtime ":resources:1.2.1"
-        // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0.1"
-        //runtime ":cached-resources:1.1"
-        //runtime ":yui-minify-resources:0.1.5"
-		
 		// For the functional tests
         test ":spock:${spockVersion}", {
           exclude "spock-grails-support"
