@@ -46,5 +46,24 @@ class ProviderSpec extends GebReportingSpec {
 			addUser(Data.USER_TEST_1_ID)
 			verifyUser(Data.USER_TEST_1_ID)
 			removeUser(Data.USER_TEST_1_ID)
+			
+		and:
+			at ProviderDetails
+			
+			// Let us associate a scheme with the provider
+			addSchema(2)
+			verifySchema()
+			removeSchema()
+	
+		and:
+			at ProviderDetails
+
+			// Associate a collection with this provider
+			addCollection(Data.PROVIDER_TEST_1_COLLECTION)
+			verifyCollection(Data.PROVIDER_TEST_1_COLLECTION)
+			removeCollection(Data.PROVIDER_TEST_1_COLLECTION)
+	
+		and:
+			at ProviderDetails
 	}
 }

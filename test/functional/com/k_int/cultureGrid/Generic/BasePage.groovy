@@ -5,13 +5,25 @@ import geb.Page
 import com.k_int.cultureGrid.Modules.MenuOptions
 
 class BasePage extends Page {
+	static def ELEMENT_ANCHOR = "a"
+	static def ELEMENT_FORM   = "form"
+	static def ELEMENT_OPTION = "option"
+	
+	static def TYPE_INPUT    = "input"
+	static def TYPE_SELECT   = "select"
+
 	static content = {
 		// Content that can be used by all the pages
 		menu {module MenuOptions}
 		getField {type, fieldName ->
-				$("form").find(type, name: fieldName)
+				$(ELEMENT_FORM).find(type, name: fieldName)
 		}
-		getInputField {fieldName -> getField("input", fieldName)}
+		getInputField {fieldName ->
+			getField(TYPE_INPUT, fieldName)
+		}
+		getSelectField {fieldName ->
+			getField(TYPE_SELECT, fieldName)
+		}
 		getSetType {type, fieldName, value -> 
 			def field = getField(type, fieldName)
 			if (field.size() == 1) {
@@ -21,9 +33,22 @@ class BasePage extends Page {
 				field.value()
 			}
 		}
-		getSetInput {fieldName, value -> getSetType("input", fieldName, value)} 
-		getSetSelect {fieldName, value -> getSetType("select", fieldName, value)}
-		link(required: false) {id -> $("a", text: id)}
+		getSetInput {fieldName, value ->
+			getSetType(TYPE_INPUT, fieldName, value)
+		} 
+		getSetSelect {fieldName, value ->
+			getSetType(TYPE_SELECT, fieldName, value)
+		}
+		getSelectOptions {fieldName ->
+			getSelectField(fieldName).find(ELEMENT_OPTION)
+		}
+		setSelectFromPosition {fieldName, position ->
+			def options = getSelectOptions(fieldName)
+			getSetSelect(fieldName, options[position].@value)
+		}
+		link(required: false) {id ->
+			$(ELEMENT_ANCHOR, text: id)
+		}
 		select {
 			id, detailsPage -> link(id).click(detailsPage)
 		}
@@ -35,7 +60,7 @@ class BasePage extends Page {
 		createOrSelect {id, fieldMap, createButtonName, homePage, detailsPage ->
 			if (link(id).size() == 0) {
 				populateFields(fieldMap)
-				getInputField(createButtonName).click()
+				clickButton(createButtonName)
 				waitFor 30D, {at homePage}
 				select(id, detailsPage)
 			} else {
@@ -44,7 +69,7 @@ class BasePage extends Page {
 		}
 		updateDetailsBase {fieldMap, updateButton ->
 			populateFields(fieldMap)
-			getInputField(updateButton).click()
+			clickButton(updateButton)
 		} 
 		verifyDetailsBase {fieldMap ->
 			def result = true
@@ -54,6 +79,9 @@ class BasePage extends Page {
 				}
 			}
 			return(result)
-		} 
-	}
+		}
+		clickButton {buttonName ->
+			getInputField(buttonName).click()
+		}
+ 	}
 }

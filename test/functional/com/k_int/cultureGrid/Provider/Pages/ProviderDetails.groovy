@@ -27,13 +27,35 @@ class ProviderDetails extends BasePage {
 		}
 		addUser {userId ->
 			getSetSelect("userId", userId)
-			getInputField("submit_grant_user").click()
+			clickButton("submit_grant_user")
 		}
 		verifyUser {userId ->
 			waitFor {($("a", text: userId).size() == 1)}
 		}
 		removeUser {userId ->
 			$("a", text: "revoke", href: endsWith("/" + userId)).click()
+		}
+		addSchema {schemaPosition -> 
+			setSelectFromPosition("schemaId", schemaPosition)
+			clickButton("submit_schema")
+		}
+		verifySchema {
+			waitFor {getInputField("removeSchemaId")}
+		}
+		removeSchema {
+			getSetInput("removeSchemaId", true)
+			clickButton("submit_schema")
+		}
+		addCollection {collectionName ->
+			getSetSelect("newCollectionIdentifier", collectionName)
+			clickButton("submit_collection")
+		}
+		verifyCollection {collectionName ->
+			waitFor {link(collectionName) && link("remove")}
+		}
+		removeCollection {collectionName ->
+			// First <td> is the link to the collection, the 2nd <td> is the link to remove it 
+			link(collectionName).parent().next().children().click()
 		}
 	}
 }
