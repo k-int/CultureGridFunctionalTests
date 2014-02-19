@@ -1,7 +1,5 @@
 package com.k_int.cultureGrid.Collections.Pages
 
-import geb.Page
-
 import com.k_int.cultureGrid.Generic.BasePage
 
 class CollectionDetails extends BasePage {

@@ -52,23 +52,35 @@ class BasePage extends Page {
 		select {
 			id, detailsPage -> link(id).click(detailsPage)
 		}
-		populateFields {fieldMap ->
+		populateFields {fieldMap, selectMap ->
 			fieldMap.each() {fieldName, value ->
-				getSetInput(fieldName, value)
+				if (value != null) {
+					getSetInput(fieldName, value)
+				}
 			}
+			if (selectMap != null) {
+				selectMap.each() {fieldName, value ->
+					if (value != null) {
+						getSetSelect(fieldName, value)
+					}
+				}
+			}
+			return(true)
 		}
-		createOrSelect {id, fieldMap, createButtonName, homePage, detailsPage ->
+		createOrSelect {id, fieldMap, selectMap, createButtonName, homePage, detailsPage ->
 			if (link(id).size() == 0) {
-				populateFields(fieldMap)
-				clickButton(createButtonName)
-				waitFor 30D, {at homePage}
+				createBase(fieldMap, selectMap, createButtonName, homePage)
 				select(id, detailsPage)
 			} else {
 				select(id, detailsPage)
 			}
 		}
-		updateDetailsBase {fieldMap, updateButton ->
-			populateFields(fieldMap)
+		createBase {fieldMap, selectMap, createButtonName, homePage ->
+			populateFields(fieldMap, selectMap)
+			clickButtonWait(createButtonName, homePage)
+		}
+		updateDetailsBase {fieldMap, selectMap, updateButton ->
+			populateFields(fieldMap, selectMap)
 			clickButton(updateButton)
 		} 
 		verifyDetailsBase {fieldMap ->
@@ -80,8 +92,15 @@ class BasePage extends Page {
 			}
 			return(result)
 		}
+		clickButtonWait {buttonName, page ->
+			if (page == null) {
+				getInputField(buttonName).click()
+			} else {
+				getInputField(buttonName).click(page)
+			}
+		}
 		clickButton {buttonName ->
-			getInputField(buttonName).click()
+			clickButtonWait(buttonName, null)
 		}
  	}
 }

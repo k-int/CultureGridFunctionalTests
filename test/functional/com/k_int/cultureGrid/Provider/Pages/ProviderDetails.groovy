@@ -16,10 +16,15 @@ class ProviderDetails extends BasePage {
 				"newName" : name])
 	}
 
+	static def createSelectMap(canUploadMedia) {
+		return(["newCanUploadMedia" : canUploadMedia])
+	}
+
 	static content = {
 		checkId {id -> waitFor {($("td", text: id).size() == 1)}}
-		updateDetails {newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName ->
-			updateDetailsBase(createFieldMap(newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName), "submit_details")
+		updateDetails {newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName, canUploadMedia ->
+			updateDetailsBase(createFieldMap(newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName),
+							  createSelectMap(canUploadMedia), "submit_details")
 		} 
 		verifyDetails {id, newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName ->
 			checkId(id) &&

@@ -18,7 +18,7 @@ class UserDetails extends BasePage {
 	static content = {
 		checkId {id -> waitFor {($("b", text: "Editing user \"" + id + "\"").size() == 1)}}
 		updateDetails {name, email, password, passwordConfirm ->
-			updateDetailsBase(createFieldMap(name, email, password, passwordConfirm), "submit_details")
+			updateDetailsBase(createFieldMap(name, email, password, passwordConfirm), null, "submit_details")
 		} 
 		verifyDetails {id, name, email ->
 			checkId(id) &&

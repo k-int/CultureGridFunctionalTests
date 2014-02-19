@@ -1,13 +1,29 @@
 package com.k_int.cultureGrid.Collections.Pages
 
-import geb.Page
-
 import com.k_int.cultureGrid.Generic.BasePage
 
 class CollectionEdit extends BasePage {
 	static url = "admin/collections/"
 	static at = {$("b",text:"Collection Details")!=null};
-	
+
+	static def createFieldMap(id, name, description, parentCollection, europeanaName) {
+		return(["editedCollectionCode" : id,
+				"editedCollectionName" : name,
+				"editedCollectionDesc" : description,
+				"newParentCollection"  : parentCollection,
+				"editedEuropeanaName"  : europeanaName])
+	}
+
+	static def createSelectMap(type, exposeOAI, exposeChildOAI, exposeProvisersOAI, showCollectionsInSearch, showProvidersInSearch, exposeToEuropeana) {
+		return(["editedCollectionType"              : type,
+				"editedManagementPublicOAI"         : exposeOAI,
+				"editedManagementOaiShowChildColls" : exposeChildOAI,
+				"editedManagementOaiShowSources"    : exposeProvisersOAI,
+				"editedManagementShowChildColls"    : showCollectionsInSearch,
+				"editedManagementShowSources"       : showProvidersInSearch,
+				"editedManagementExposeToEuropeana" : exposeToEuropeana])
+	}
+
 	static content = {
  
  		genericSelect {name, value -> $("select",name:name).value(value)}
@@ -78,5 +94,12 @@ class CollectionEdit extends BasePage {
 		revalidateCollectionRecords { $("ul",name:"europeana_validation").find("a",1)}
 		retryEDM { $("ul",name:"europeana_validation").find("a",2)}
 		convertToEDM { $("ul",name:"europeana_validation").find("a",3)}
+		
+		create {id, name, description, parentCollection, europeanaName,
+		        type, exposeOAI, exposeChildOAI, exposeProvisersOAI, showCollectionsInSearch, showProvidersInSearch, exposeToEuropeana ->
+			createBase(createFieldMap(id, name, description, parentCollection, europeanaName),
+				  	   createSelectMap(type, exposeOAI, exposeChildOAI, exposeProvisersOAI, showCollectionsInSearch, showProvidersInSearch, exposeToEuropeana),
+					   "submit_details")
+		}
 	}
 }

@@ -15,7 +15,7 @@ class ProviderHome extends BasePage {
 
 	static content = {
 		createSelect {id, name ->
-			createOrSelect(id, createFieldMap(id, name), "submit_create", ProviderHome, ProviderDetails)
+			createOrSelect(id, createFieldMap(id, name), null, "submit_create", ProviderHome, ProviderDetails)
 		}
 	}
 }

@@ -1,8 +1,5 @@
 package com.k_int.cultureGrid.Collections.Pages
 
-import geb.Page
-
-import com.k_int.cultureGrid.Collections.Pages.CollectionDetails
 import com.k_int.cultureGrid.Generic.BasePage
 
 
@@ -22,5 +19,13 @@ class CollectionSearch extends BasePage {
 		viewCollection {id -> $("a",text:id).click(CollectionDetails)}	
 
 		createNewCollection { $("input",value:"Create a new collection")}
+		
+		createIfNotExists {id ->
+			def result = (link(id).size() == 0) 
+			if (result == true) {
+				$("input", name: "submit_create").click()
+			}
+			return(result)
+		}
 	}
 }
