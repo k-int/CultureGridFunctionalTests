@@ -48,3 +48,11 @@ class Data {
 	static def COLLECTION_TEST_PARENT_COLLECTION = "PN"
 	static def COLLECTION_TYPE_ITEM = "Item"
 }
+
+
+	//Variables used for Media Format tests
+
+	static def MEDIA_FORMAT_NAME= "Small"
+	static def MEDIA_FORMAT_PROVIDER_CODE = PROVIDER_TEST_1_COLLECTION
+	static def MEDIA_ARTIFACT_NAME = "small"
+}

@@ -7,5 +7,10 @@ class MediaFormatsHome extends BasePage {
 	static at = {title.endsWith("Media format editor")};
 	
 	static content = {
+		selectFormat { name -> link(name)}
+
+		selectFormatArtifact {name -> link(name).parent().parent().find("a",text:"artifacts")}
+
+		createNewFormat { $("input",type:"submit")}
 	}
 }
