@@ -28,4 +28,11 @@ class Data {
 	static def TESTING_COLLECTION = "FunctionalTest"
 	static def TESTING_COLLECTION_USER = "ACCES"
 	static def TESTING_COLLECTION_CHILD = "Collection-639"
+
+
+	//Variables used for Media Format tests
+
+	static def MEDIA_FORMAT_NAME= "Small"
+	static def MEDIA_FORMAT_PROVIDER_CODE = PROVIDER_TEST_1_COLLECTION
+	static def MEDIA_ARTIFACT_NAME = "small"
 }
