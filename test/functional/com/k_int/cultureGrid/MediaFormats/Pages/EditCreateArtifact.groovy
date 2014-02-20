@@ -13,7 +13,7 @@ class EditCreateArtifact extends BasePage {
 				getSelectField("artifactDTO.linkType").value(type)
 		}
 		verifyDetails {name,height,width,aspect_ratio,extension,top,bottom,left,right,type ->
-				verifyDetailsBase(createFieldMap(name,height,width,aspect_ratio,top,bottom,left,right))
+				verifyDetailsBase(createFieldMap(name,height,width,aspect_ratio,top,bottom,left,right), null)
 				getSelectField("artifactDTO.extension").value() == extension
 				getSelectField("artifactDTO.linkType").value() == type
 			}

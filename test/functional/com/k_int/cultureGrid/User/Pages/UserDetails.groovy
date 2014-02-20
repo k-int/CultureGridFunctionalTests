@@ -22,7 +22,7 @@ class UserDetails extends BasePage {
 		} 
 		verifyDetails {id, name, email ->
 			checkId(id) &&
-			verifyDetailsBase(createFieldMap(name, email, "", ""))
+			verifyDetailsBase(createFieldMap(name, email, "", ""), null)
 		} 
 	}
 }

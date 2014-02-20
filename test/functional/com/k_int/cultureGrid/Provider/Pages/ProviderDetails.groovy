@@ -28,7 +28,7 @@ class ProviderDetails extends BasePage {
 		} 
 		verifyDetails {id, newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName ->
 			checkId(id) &&
-			verifyDetailsBase(createFieldMap(newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName))
+			verifyDetailsBase(createFieldMap(newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName), null)
 		}
 		addUser {userId ->
 			getSetSelect("userId", userId)
