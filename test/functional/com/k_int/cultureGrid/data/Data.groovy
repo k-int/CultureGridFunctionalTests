@@ -52,4 +52,10 @@ class Data {
 	static def MEDIA_FORMAT_NAME= "Small"
 	static def MEDIA_FORMAT_PROVIDER_CODE = PROVIDER_TEST_1_COLLECTION
 	static def MEDIA_ARTIFACT_NAME = "small"
+
+	//OAI Administration 
+	static def OAI_INSTRUCTION_NAME = "Functional Test"
+	static def OAI_PROVIDER_CODE = "2484"
+	static def OAI_SET_NAME = "PN:BeamishTreasures:*"
+
 }

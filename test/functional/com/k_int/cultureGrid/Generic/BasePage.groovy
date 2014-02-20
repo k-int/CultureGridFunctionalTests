@@ -84,11 +84,20 @@ class BasePage extends Page {
 			populateFields(fieldMap, selectMap)
 			clickButton(updateButton)
 		} 
-		verifyDetailsBase {fieldMap ->
+		verifyDetailsBase {fieldMap, selectMap ->
 			def result = true
-			fieldMap.each() {fieldName, value ->
-				if (!value.equals(getSetInput(fieldName, null))) {
-					result = false
+			if(fieldMap !=null){
+				fieldMap.each() {fieldName, value ->
+					if (!value.equals(getSetInput(fieldName, null))) {
+						result = false
+					}
+				}
+			}
+			if (selectMap != null) {
+				selectMap.each() {fieldName, value ->
+					if(!value.equals(getSetSelect(fieldName,null))){
+						result = false;
+					}						
 				}
 			}
 			return(result)
