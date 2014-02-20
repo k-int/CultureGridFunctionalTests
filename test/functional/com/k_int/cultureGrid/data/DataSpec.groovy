@@ -3,6 +3,7 @@ package com.k_int.cultureGrid.data
 import geb.spock.GebReportingSpec
 import spock.lang.Stepwise
 
+import com.k_int.cultureGrid.Collections.Pages.CollectionDetails
 import com.k_int.cultureGrid.Collections.Pages.CollectionEdit
 import com.k_int.cultureGrid.Collections.Pages.CollectionSearch
 import com.k_int.cultureGrid.Home.Pages.LoggedInHome
@@ -35,7 +36,13 @@ class DataSpec extends GebReportingSpec {
 				waitFor {at CollectionEdit}
 				create(Data.COLLECTION_TEST_ID, Data.COLLECTION_TEST_NAME, Data.COLLECTION_TEST_NAME, Data.COLLECTION_TEST_PARENT_COLLECTION, "",
 					   Data.COLLECTION_TYPE_ITEM, Data.TRUE, Data.TRUE, Data.TRUE, Data.TRUE, Data.TRUE, Data.TRUE)
-			}
+			} else {
+				// Delete all the records
+				select(Data.COLLECTION_TEST_ID, CollectionDetails)
+				editColButton.click(CollectionEdit)
+				withConfirm {deleteRecords.click()}
+			}			
+
 			menu.provider.click();
 			
 		and:

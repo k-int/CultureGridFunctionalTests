@@ -86,7 +86,8 @@ class CollectionEdit extends BasePage {
 
 		//Collection Deletion
 		deleteAll { $("ul",name:"collection_deletion").find("a",0)}
-		deleteRecords { $("ul",name:"collection_deletion").find("a",1)}
+//		deleteRecords { $("ul",name:"collection_deletion").find("a",1)}
+		deleteRecords {link("Delete all records in this collection")}
 		deleteAndMove { $("ul",name:"collection_deletion").find("a",2)}
 
 		//Europeana Validation

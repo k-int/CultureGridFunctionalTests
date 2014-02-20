@@ -28,6 +28,7 @@ class BasePage extends Page {
 			def field = getField(type, fieldName)
 			if (field.size() == 1) {
 				if (value != null) {
+//println "Setting field \"" + fieldName + "\", value: \"" + value + "\""					
 					field.value(value)
 				}
 				field.value()

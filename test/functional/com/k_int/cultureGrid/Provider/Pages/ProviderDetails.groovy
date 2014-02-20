@@ -52,8 +52,13 @@ class ProviderDetails extends BasePage {
 			clickButton("submit_schema")
 		}
 		addCollection {collectionName ->
-			getSetSelect("newCollectionIdentifier", collectionName)
-			clickButton("submit_collection")
+			// First check if the collection is already associated with this provider, if so then we do not need to add it
+			if (link(collectionName).size() == 0) {
+				// Not associated with the provider so add it
+				getSetSelect("newCollectionIdentifier", collectionName)
+				clickButton("submit_collection")
+			}
+			return(true)
 		}
 		verifyCollection {collectionName ->
 			waitFor {link(collectionName) && link("remove")}
