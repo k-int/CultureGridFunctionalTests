@@ -24,7 +24,7 @@ class ProviderDetails extends BasePage {
 		checkId {id -> waitFor {($("td", text: id).size() == 1)}}
 		updateDetails {newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName, canUploadMedia ->
 			updateDetailsBase(createFieldMap(newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName),
-							  createSelectMap(canUploadMedia), "submit_details")
+							  createSelectMap(canUploadMedia), "submit_details", false)
 		} 
 		verifyDetails {id, newEmail, newEuropeanaId, newEuropeanaName, newMediaStorePath, newName ->
 			checkId(id) &&

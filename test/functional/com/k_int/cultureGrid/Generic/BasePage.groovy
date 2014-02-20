@@ -28,10 +28,13 @@ class BasePage extends Page {
 			def field = getField(type, fieldName)
 			if (field.size() == 1) {
 				if (value != null) {
-//println "Setting field \"" + fieldName + "\", value: \"" + value + "\""					
+					//println "Setting field \"" + fieldName + "\", value: \"" + value + "\""					
 					field.value(value)
 				}
+				//println "field \"" + fieldName + "\", value: \"" + field.value() + "\""					
 				field.value()
+			} else {
+				// println "Not found field: \"" + fieldName + "\", type: \"" + type + "\""					
 			}
 		}
 		getSetInput {fieldName, value ->
@@ -53,7 +56,7 @@ class BasePage extends Page {
 		select {
 			id, detailsPage -> link(id).click(detailsPage)
 		}
-		populateFields {fieldMap, selectMap ->
+		populateFields {fieldMap, selectMap, pauseAfterSelectUpdate ->
 			fieldMap.each() {fieldName, value ->
 				if (value != null) {
 					getSetInput(fieldName, value)
@@ -63,6 +66,10 @@ class BasePage extends Page {
 				selectMap.each() {fieldName, value ->
 					if (value != null) {
 						getSetSelect(fieldName, value)
+						if (pauseAfterSelectUpdate == true) {
+							// Sleep for half a second as there may be an ajax call being triggered
+							sleep(500)
+						}
 					}
 				}
 			}
@@ -77,11 +84,12 @@ class BasePage extends Page {
 			}
 		}
 		createBase {fieldMap, selectMap, createButtonName, homePage ->
-			populateFields(fieldMap, selectMap)
+			populateFields(fieldMap, selectMap, false)
 			clickButtonWait(createButtonName, homePage)
 		}
-		updateDetailsBase {fieldMap, selectMap, updateButton ->
-			populateFields(fieldMap, selectMap)
+		updateDetailsBase {fieldMap, selectMap, updateButton, pauseAfterSelectUpdate ->
+			populateFields(fieldMap, selectMap, pauseAfterSelectUpdate)
+			sleep(500)
 			clickButton(updateButton)
 		} 
 		verifyDetailsBase {fieldMap ->

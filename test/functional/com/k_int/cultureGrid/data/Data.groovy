@@ -52,4 +52,60 @@ class Data {
 	static def MEDIA_FORMAT_NAME= "Small"
 	static def MEDIA_FORMAT_PROVIDER_CODE = PROVIDER_TEST_1_COLLECTION
 	static def MEDIA_ARTIFACT_NAME = "small"
+	
+	// files that we use for the data upload
+	// Are an array of a map defining the filename(s) and how many records we expect
+	static def UPLOAD_FILENAME = "filename"
+	static def UPLOAD_NUMBER_RECORDS = "numberOfRecords"
+	static def UPLOAD_MEDIA_FILE = "mediaFilename"
+	static def UPLOAD_DIRECTORY = "resources/"
+	
+	static def UPLOAD_FILES = []
+	
+	static {
+		// As the keys are static variables, we need to create the file map array this way
+		// Single Lido record
+		def fileMap = [ : ]
+		fileMap.put(UPLOAD_FILENAME, "LIDO-Single.xml")
+		fileMap.put(UPLOAD_NUMBER_RECORDS, 1)
+	 	UPLOAD_FILES.add(fileMap)
+		 
+	 	// Multiple Lido records in one file
+		fileMap = [ : ]
+	 	fileMap.put(UPLOAD_FILENAME, "LIDO-Multiple.xml")
+		fileMap.put(UPLOAD_NUMBER_RECORDS, 2)
+	 	UPLOAD_FILES.add(fileMap)
+	 
+	 	// Single Lido file in zip file
+		 // There is a bug so this dosn't work at the moment
+//		fileMap = [ : ]
+//	 	fileMap.put(UPLOAD_FILENAME, "LIDO-Single.zip")
+//		fileMap.put(UPLOAD_NUMBER_RECORDS, 1)
+//	 	UPLOAD_FILES.add(fileMap)
+	 
+	 	// Multiple Lido files in zip file
+		fileMap = [ : ]
+	 	fileMap.put(UPLOAD_FILENAME, "LIDO-Multiple.zip")
+		fileMap.put(UPLOAD_NUMBER_RECORDS, 3)
+	 	UPLOAD_FILES.add(fileMap)
+	 
+	 	// Records in spreadsheet
+		fileMap = [ : ]
+	 	fileMap.put(UPLOAD_FILENAME, "Spreadsheet.xls")
+		fileMap.put(UPLOAD_NUMBER_RECORDS, 4)
+	 	UPLOAD_FILES.add(fileMap)
+	 
+	 	// Records in zipped spreadsheet
+		fileMap = [ : ]
+	 	fileMap.put(UPLOAD_FILENAME, "Spreadsheet.zip")
+		fileMap.put(UPLOAD_NUMBER_RECORDS, 5)
+	 	UPLOAD_FILES.add(fileMap)
+	 
+	 	// Spreadsheet that refers to media files
+		fileMap = [ : ]
+	 	fileMap.put(UPLOAD_FILENAME, "SpreadsheetMedia.zip")
+		fileMap.put(UPLOAD_NUMBER_RECORDS, 6)
+		fileMap.put(UPLOAD_MEDIA_FILE, "SpreadsheetMediaImages.zip")
+	 	UPLOAD_FILES.add(fileMap)
+	}
 }
