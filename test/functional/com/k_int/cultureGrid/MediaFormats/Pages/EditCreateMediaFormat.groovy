@@ -11,7 +11,9 @@ class EditCreateMediaFormat extends BasePage {
 		applyTo {providerCode -> getSetSelect("selectedProvider",providerCode) }
 		removeFrom {providerCode -> getSetSelect("providerToRemove",providerCode)}
 
-		providerList {providerCode -> $("ul").find("li",value:providerCode)}
+		providerList {providerName ->
+			$("ul").find("li", text: providerName)
+		}
 
 		submit { $("input",value:"Save format")}
 

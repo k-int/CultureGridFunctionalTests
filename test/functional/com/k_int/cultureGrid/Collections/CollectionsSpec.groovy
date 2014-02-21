@@ -21,7 +21,7 @@ class CollectionsSpec extends GebReportingSpec {
 
 		when:
 		at CollectionSearch
-		searchCol(Data.TESTING_COLLECTION)
+		searchCol(Data.COLLECTION_TEST_ID)
 		then:
 		at CollectionSearch
 
@@ -30,7 +30,7 @@ class CollectionsSpec extends GebReportingSpec {
 	def "View Collection"() {
 		when:
 			at CollectionSearch
-			viewCollection(Data.TESTING_COLLECTION)
+			viewCollection(Data.COLLECTION_TEST_ID)
 		then:
 			at CollectionDetails
 
@@ -39,8 +39,8 @@ class CollectionsSpec extends GebReportingSpec {
 	def "Access Edit collection" (){
 		when:
 			menu.collection.click(CollectionSearch);
-			searchCol(Data.TESTING_COLLECTION)
-			viewCollection(Data.TESTING_COLLECTION)
+			searchCol(Data.COLLECTION_TEST_ID)
+			viewCollection(Data.COLLECTION_TEST_ID)
 		then:
 			at CollectionDetails
 
@@ -48,62 +48,37 @@ class CollectionsSpec extends GebReportingSpec {
 
 	}
 	
-
 	def "Authorize/Remove User"(){
 			menu.collection.click(CollectionSearch)
-			searchCol(Data.TESTING_COLLECTION)
-			viewCollection(Data.TESTING_COLLECTION)
+			searchCol(Data.COLLECTION_TEST_ID)
+			viewCollection(Data.COLLECTION_TEST_ID)
 			editColButton.click(CollectionEdit)
 		when:
-			authorizeNewUser(Data.TESTING_COLLECTION_USER)
+			authorizeNewUser(Data.USER_GENERAL_ID)
 		then:
-			authorizedUser(Data.TESTING_COLLECTION_USER).isEmpty() == false
+			authorizedUser(Data.USER_GENERAL_ID).isEmpty() == false
 
 		when:
-			removeAuthorizedUser(Data.TESTING_COLLECTION_USER)
+			removeAuthorizedUser(Data.USER_GENERAL_ID)
 		then:
-			authorizedUser(Data.TESTING_COLLECTION_USER).isEmpty()
+			authorizedUser(Data.USER_GENERAL_ID).isEmpty()
 	}
 
 	def "Add_Remove Child Collection"() {
 		at CollectionEdit
 		when:
-			addCollectionChild(Data.TESTING_COLLECTION_CHILD)
+			addCollectionChild(Data.COLLECTION_TEST_CHILD_ID)
 		then:
-			children_colls(Data.TESTING_COLLECTION_CHILD).isEmpty() == false
-			withConfirm { removeChildCol(Data.TESTING_COLLECTION_CHILD)}
-			children_colls(Data.TESTING_COLLECTION_CHILD).isEmpty()
-	}
-
-	
-
-
-	def "Create New Collection"() {
-		when:
-			menu.collection.click(CollectionSearch)
-			createNewCollection.click(CollectionEdit)
-			editedColCode.value(Data.TESTING_COLLECTION)
-			editedColName.value("Functional Testing Collection")
-			editedColDesc.value("Used for testing")
-			editedColType.value("Item")
-			editedParentCollection.value("PN")
-			editedColEuropeanaName.value("Europeana name here")
-			exposeThroughOAI.value("true")
-			exposeChildOAI.value("true")
-			exposeDataProvOAI.value("true")
-			childInSearch.value("true")
-			dataProvInSearch.value("true")
-			exposeToEuropeana.value("true")
-			collDetailsSubmit.click(CollectionEdit)
-		then:
-			errorMsg.size() == 2
+			children_colls(Data.COLLECTION_TEST_CHILD_ID).isEmpty() == false
+			withConfirm { removeChildCol(Data.COLLECTION_TEST_CHILD_ID)}
+			children_colls(Data.COLLECTION_TEST_CHILD_ID).isEmpty()
 	}
 
 	def "Edit Collection Details"() {
 		when:
 			menu.collection.click(CollectionSearch)
-			searchCol(Data.TESTING_COLLECTION)
-			viewCollection(Data.TESTING_COLLECTION)
+			searchCol(Data.COLLECTION_TEST_ID)
+			viewCollection(Data.COLLECTION_TEST_ID)
 		then:
 			at CollectionDetails
 			editColButton.click(CollectionEdit)
@@ -143,8 +118,8 @@ class CollectionsSpec extends GebReportingSpec {
 	def "Add_Remove Alt identifier"() {
 		when:
 			menu.collection.click(CollectionSearch)
-			searchCol(Data.TESTING_COLLECTION)
-			viewCollection(Data.TESTING_COLLECTION)
+			searchCol(Data.COLLECTION_TEST_ID)
+			viewCollection(Data.COLLECTION_TEST_ID)
 			editColButton.click(CollectionEdit)
 			addNewAltIdentifier("newIdentifier",CollectionEdit)
 
@@ -162,8 +137,8 @@ class CollectionsSpec extends GebReportingSpec {
 	def "Test Europeana Validation links"() {
 		when:
 			menu.collection.click(CollectionSearch)
-			searchCol(Data.TESTING_COLLECTION)
-			viewCollection(Data.TESTING_COLLECTION)
+			searchCol(Data.COLLECTION_TEST_ID)
+			viewCollection(Data.COLLECTION_TEST_ID)
 			editColButton.click(CollectionEdit)
 			revalidateInvalidRecords.click()
 		then:
@@ -182,7 +157,4 @@ class CollectionsSpec extends GebReportingSpec {
 		then:
 			at CollectionEdit		
 	}
-
-
-
 }

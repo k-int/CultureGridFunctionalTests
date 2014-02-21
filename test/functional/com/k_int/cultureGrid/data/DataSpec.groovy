@@ -28,20 +28,23 @@ class DataSpec extends GebReportingSpec {
 			createSelect(Data.USER_GENERAL_ID, Data.USER_GENERAL_NAME, Data.USER_GENERAL_PASSWORD, Data.USER_GENERAL_PASSWORD, Data.USER_GENERAL_EMAIL)
 			menu.collection.click();
 
-		and:
-			at CollectionSearch
-			
-			// Create the collection that various tests are going to use
-			if (createIfNotExists(Data.COLLECTION_TEST_ID)) {
-				waitFor {at CollectionEdit}
-				create(Data.COLLECTION_TEST_ID, Data.COLLECTION_TEST_NAME, Data.COLLECTION_TEST_NAME, Data.COLLECTION_TEST_PARENT_COLLECTION, "",
-					   Data.COLLECTION_TYPE_ITEM, Data.TRUE, Data.TRUE, Data.TRUE, Data.TRUE, Data.TRUE, Data.TRUE)
-			} else {
-				// Delete all the records
-				select(Data.COLLECTION_TEST_ID, CollectionDetails)
-				editColButton.click(CollectionEdit)
-				withConfirm {deleteRecords.click()}
-			}			
+			Data.COLLECTIONS.each() {collection ->			
+				menu.collection.click();
+				
+				and:
+					at CollectionSearch
+					// Create the parent collections that various tests are going to use
+					if (createIfNotExists(collection.get(Data.COLLECTION_ID))) {
+						waitFor {at CollectionEdit}
+						create(collection.get(Data.COLLECTION_ID), collection.get(Data.COLLECTION_NAME), collection.get(Data.COLLECTION_NAME), collection.get(Data.COLLECTION_PARENT), "",
+							   collection.get(Data.COLLECTION_TYPE), Data.TRUE, Data.TRUE, Data.TRUE, Data.TRUE, Data.TRUE, Data.TRUE)
+					} else {
+						// Delete all the records
+						select(collection.get(Data.COLLECTION_ID), CollectionDetails)
+						editColButton.click(CollectionEdit)
+						withConfirm {deleteRecords.click()}
+					}
+			}
 
 			menu.provider.click();
 			

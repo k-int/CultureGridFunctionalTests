@@ -22,7 +22,7 @@ class Data {
 	static def USER_GENERAL_PASSWORD = "GeneralUser"
 
 	// The permanent provider that will be generally used for testing, so should not be deleted
-	static def PROVIDER_TEST_1_COLLECTION = "Chas"
+	static def PROVIDER_TEST_1_COLLECTION = COLLECTION_TEST_ID
 	static def PROVIDER_TEST_1_EDITED_NAME = "**Edited Functional Test 1**"
 	static def PROVIDER_TEST_1_EMAIL = "email@func1a"
 	static def PROVIDER_TEST_1_EUROPEANA_ID = "func1EuropeanaId"
@@ -37,26 +37,50 @@ class Data {
 	static def PROVIDER_GENERAL_MEDIA_PATH = "funcTestGeneralProvider"
 	static def PROVIDER_GENERAL_NAME = "**Functional Test General Provider**"
 
-	// Variables used for CollectionsSpec test
-	static def TESTING_COLLECTION = "FunctionalTest"
-	static def TESTING_COLLECTION_USER = "ACCES"
-	static def TESTING_COLLECTION_CHILD = "Collection-639"
-	
-	//  The permanent collection that will be generally used for testing, so should not be deleted
+	//  The permanent collections that will be generally used for testing, so should not be deleted
 	static def COLLECTION_TEST_ID = "_functestGeneralCollection_"
-	static def COLLECTION_TEST_NAME = "**Functional Test General Collection**"
-	static def COLLECTION_TEST_PARENT_COLLECTION = "PN"
+
+	// The child collection we use for testing
+	static def COLLECTION_TEST_CHILD_ID = "_functestGeneralCollectionChild_"
+
+	// Generic collection values 
+	static def COLLECTION_TEST_PARENT = "PN"
 	static def COLLECTION_TYPE_ITEM = "Item"
 
+	// files that we use for the data upload
+	// Are an array of a map defining the filename(s) and how many records we expect
+	static def COLLECTION_ID = "id"
+	static def COLLECTION_NAME = "name"
+	static def COLLECTION_PARENT = "parent"
+	static def COLLECTION_TYPE = "type"
+	
+	static def COLLECTIONS = []
+	
+	static {
+		// As the keys are static variables, we need to create the file map array this way
+		def collectionMap = [ : ]
+		collectionMap.put(COLLECTION_ID, COLLECTION_TEST_ID)
+		collectionMap.put(COLLECTION_NAME, "**Functional Test General Collection**")
+		collectionMap.put(COLLECTION_PARENT, COLLECTION_TEST_PARENT)
+		collectionMap.put(COLLECTION_TYPE, COLLECTION_TYPE_ITEM)
+	 	COLLECTIONS.add(collectionMap)
+
+		 // Child collection for testing		 
+		collectionMap = [ : ]
+		collectionMap.put(COLLECTION_ID, COLLECTION_TEST_CHILD_ID)
+		collectionMap.put(COLLECTION_NAME, "**Functional Test General Collection Child**")
+		collectionMap.put(COLLECTION_PARENT, COLLECTION_TEST_PARENT)
+		collectionMap.put(COLLECTION_TYPE, COLLECTION_TYPE_ITEM)
+	 	COLLECTIONS.add(collectionMap)
+	}
+	
 	//Variables used for Media Format tests
-	static def MEDIA_FORMAT_NAME= "Small"
-	static def MEDIA_FORMAT_PROVIDER_CODE = PROVIDER_TEST_1_COLLECTION
-	static def MEDIA_ARTIFACT_NAME = "small"
+	static def MEDIA_FORMAT_NAME= "_FunctionalTestMedia_"
+	static def MEDIA_FORMAT_PROVIDER_CODE = PROVIDER_GENERAL_ID
+	static def MEDIA_ARTIFACT_NAME = "_FunctionalTestArtifact_"
 
 	//OAI Administration 
-	static def OAI_INSTRUCTION_NAME = "Functional Test"
-	static def OAI_PROVIDER_CODE = "2484"
-	static def OAI_SET_NAME = "PN:BeamishTreasures:*"
+	static def OAI_INSTRUCTION_NAME = "_FunctionalTestOAI_"
 
 	// files that we use for the data upload
 	// Are an array of a map defining the filename(s) and how many records we expect
@@ -83,10 +107,10 @@ class Data {
 	 
 	 	// Single Lido file in zip file
 		 // There is a bug so this dosn't work at the moment
-//		fileMap = [ : ]
-//	 	fileMap.put(UPLOAD_FILENAME, "LIDO-Single.zip")
-//		fileMap.put(UPLOAD_NUMBER_RECORDS, 1)
-//	 	UPLOAD_FILES.add(fileMap)
+		fileMap = [ : ]
+	 	fileMap.put(UPLOAD_FILENAME, "LIDO-Single.zip")
+		fileMap.put(UPLOAD_NUMBER_RECORDS, 1)
+	 	UPLOAD_FILES.add(fileMap)
 	 
 	 	// Multiple Lido files in zip file
 		fileMap = [ : ]

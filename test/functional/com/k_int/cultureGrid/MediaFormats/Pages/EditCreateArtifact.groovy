@@ -8,7 +8,7 @@ class EditCreateArtifact extends BasePage {
 	
 	static content = {
 		updateDetails {name,height,width,aspect_ratio,extension,top,bottom,left,right,type ->
-				populateFields(createFieldMap(name,height,width,aspect_ratio,top,bottom,left,right))
+				populateFields(createFieldMap(name,height,width,aspect_ratio,top,bottom,left,right), null, false)
 				getSelectField("artifactDTO.extension").value(extension)
 				getSelectField("artifactDTO.linkType").value(type)
 		}

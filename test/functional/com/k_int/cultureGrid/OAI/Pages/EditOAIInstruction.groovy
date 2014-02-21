@@ -17,7 +17,7 @@ class EditOAIInstruction extends BasePage {
 			populateFields (createFieldMap(title, uri, prefix, setSpec, charset,
 			interval, maxRetries, retryIncrement, defaultNamespace, limitAttribute, 
 			offsetAttribute, fetchSize) , 
-			createSelectMap( providerCode, span, userID, parentCollectionName, harvestType )  )
+			createSelectMap( providerCode, span, userID, parentCollectionName, harvestType ), true)
 
 			$("input",value:"Submit").click()
 		}

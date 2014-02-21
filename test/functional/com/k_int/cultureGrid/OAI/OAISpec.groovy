@@ -29,8 +29,8 @@ class OAISpec extends GebReportingSpec {
 			withConfirm { enable.click() }
 			isActive.isEmpty() == false
 		}else{
-			disable.click()
-			isDisabled.isEmpty == false
+			withConfirm {disable.click()}
+			isDisabled.isEmpty() == false
 		}
 	}
 	def "Add Instruction" () {
@@ -42,8 +42,8 @@ class OAISpec extends GebReportingSpec {
 
 		when: 
 			populateForm(Data.OAI_INSTRUCTION_NAME, "base_url", "pnds_dc", "PN",
-			"UTF-9", "8", "4", "6", "default_namespace", 
-			"unlimited", "offset attr","11","2484","YEAR","cgadmin","2484","XML")
+			"UTF-16", "8", "4", "6", "default_namespace", 
+			"unlimited", "offset attr","11",Data.PROVIDER_GENERAL_ID,"YEAR",Data.USER_GENERAL_ID,Data.COLLECTION_TEST_ID,"XML")
 		then:
 			at OAIHome
 
@@ -55,8 +55,8 @@ class OAISpec extends GebReportingSpec {
 		expect:
 			editInstruction(Data.OAI_INSTRUCTION_NAME).click(EditOAIInstruction)
 			validateDetails(Data.OAI_INSTRUCTION_NAME, "base_url", "pnds_dc", "PN",
-			"UTF-9", "8", "4", "6", "default_namespace", 
-			"unlimited", "offset attr","11","2484","YEAR","cgadmin","2484","XML")
+			"UTF-16", "8", "4", "6", "default_namespace", 
+			"unlimited", "offset attr","11",Data.PROVIDER_GENERAL_ID,"YEAR",Data.USER_GENERAL_ID,Data.COLLECTION_TEST_ID,"XML")
 
 		listAllInstructions.click(OAIHome)
 	}

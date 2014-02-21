@@ -100,7 +100,7 @@ class CollectionEdit extends BasePage {
 		        type, exposeOAI, exposeChildOAI, exposeProvisersOAI, showCollectionsInSearch, showProvidersInSearch, exposeToEuropeana ->
 			createBase(createFieldMap(id, name, description, parentCollection, europeanaName),
 				  	   createSelectMap(type, exposeOAI, exposeChildOAI, exposeProvisersOAI, showCollectionsInSearch, showProvidersInSearch, exposeToEuropeana),
-					   "submit_details")
+					   "submit_details", null)
 		}
 	}
 }

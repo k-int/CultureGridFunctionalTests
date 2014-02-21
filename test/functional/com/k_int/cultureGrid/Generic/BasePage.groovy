@@ -89,7 +89,6 @@ class BasePage extends Page {
 		}
 		updateDetailsBase {fieldMap, selectMap, updateButton, pauseAfterSelectUpdate ->
 			populateFields(fieldMap, selectMap, pauseAfterSelectUpdate)
-			sleep(500)
 			clickButton(updateButton)
 		} 
 		verifyDetailsBase {fieldMap, selectMap ->

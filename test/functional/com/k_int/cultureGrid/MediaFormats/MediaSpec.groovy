@@ -60,7 +60,7 @@ class MediaSpec extends GebReportingSpec {
 		when:
 			selectFormat(Data.MEDIA_FORMAT_NAME).click(EditCreateMediaFormat)	
 		then:
-			providerList(Data.MEDIA_FORMAT_PROVIDER_CODE).isEmpty() == false	
+			providerList(Data.PROVIDER_GENERAL_NAME).size() == 1	
 			removeFrom(Data.MEDIA_FORMAT_PROVIDER_CODE).isEmpty() == false
 		
 		when:
@@ -169,40 +169,4 @@ class MediaSpec extends GebReportingSpec {
 			thrown(geb.error.RequiredPageContentNotPresent)
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
