@@ -16,8 +16,8 @@ class OAIHome extends BasePage {
 		addNewInstruction { $("input",value:"Add new harvest Instruction") }
 
 		selectInstruction { name -> link(name) }
-		harvestNew {name -> selectInstruction(name).parent().parent().next("8").getChild()}
-		harvestAll {name -> selectInstruction(name).parent().parent().find("a",2)}
+		harvestNew {name -> selectInstruction(name).closest("tr").find("td",6).children()}
+		harvestAll {name -> selectInstruction(name).closest("tr").find("td",7).children()}
 
 		editInstruction { name -> selectInstruction(name).closest("tr").find("a").last()}
 		frame { action -> withFrame("oai_frame") { action } }

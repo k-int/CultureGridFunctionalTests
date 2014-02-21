@@ -22,17 +22,22 @@ class OAISpec extends GebReportingSpec {
 		driver.switchTo().frame("oai_frame")
 
 	}
+	
 	def "Enable/Disable harvesting" (){
 		given:
 			at OAIHome
-		if(isActive.isEmpty()){
-			withConfirm { enable.click() }
-			isActive.isEmpty() == false
-		}else{
-			disable.click()
-			isDisabled.isEmpty == false
-		}
+		expect:
+			2.times{
+				if(isActive.isEmpty()){
+					withConfirm { enable.click() }
+					isActive.isEmpty() == false
+				}else{
+					withConfirm { disable.click() }
+					isDisabled.isEmpty() == false
+				}
+			}
 	}
+	
 	def "Add Instruction" () {
 		given:
 			at OAIHome
@@ -78,6 +83,28 @@ class OAISpec extends GebReportingSpec {
 		expect:
 			status(Data.OAI_INSTRUCTION_NAME).equals("SUSPENDED")
 	}
+
+		def "harvest new "(){
+		given:
+			at OAIHome
+			status(Data.OAI_INSTRUCTION_NAME).equals("SUSPENDED")
+
+		when:
+			harvestNew(Data.OAI_INSTRUCTION_NAME).click()
+		then:
+			status(Data.OAI_INSTRUCTION_NAME).equals("IDLE")
+
+	}
+	def "Harvest all" (){
+		given:
+			at OAIHome
+
+		when:
+			suspend(Data.OAI_INSTRUCTION_NAME).click()
+			harvestAll(Data.OAI_INSTRUCTION_NAME).click()
+		then:
+			status(Data.OAI_INSTRUCTION_NAME).equals("IDLE")
+	}
 	
 	def "Delete Testing instruction" (){
 		given:
@@ -88,4 +115,5 @@ class OAISpec extends GebReportingSpec {
 
 
 	}
+	
 }
