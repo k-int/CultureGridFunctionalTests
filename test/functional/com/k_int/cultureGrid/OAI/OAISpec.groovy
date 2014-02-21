@@ -22,9 +22,12 @@ class OAISpec extends GebReportingSpec {
 		driver.switchTo().frame("oai_frame")
 
 	}
+	
 	def "Enable/Disable harvesting" (){
 		given:
 			at OAIHome
+		expect:
+			2.times{
 		if(isActive.isEmpty()){
 			withConfirm { enable.click() }
 			isActive.isEmpty() == false
@@ -33,6 +36,8 @@ class OAISpec extends GebReportingSpec {
 			isDisabled.isEmpty() == false
 		}
 	}
+	}
+	
 	def "Add Instruction" () {
 		given:
 			at OAIHome
@@ -65,7 +70,8 @@ class OAISpec extends GebReportingSpec {
 		given:
 			at OAIHome
 		expect:
-			status(Data.OAI_INSTRUCTION_NAME).equals("IDLE")
+			def statusValue = status(Data.OAI_INSTRUCTION_NAME)
+			statusValue.equals("IDLE") || statusValue.equals("AWAITING_RETRY")
 			progress(Data.OAI_INSTRUCTION_NAME).equals("0 / 0 / 0")
 			lastRun(Data.OAI_INSTRUCTION_NAME).equals("")
 
@@ -78,6 +84,30 @@ class OAISpec extends GebReportingSpec {
 		expect:
 			status(Data.OAI_INSTRUCTION_NAME).equals("SUSPENDED")
 	}
+
+		def "harvest new "(){
+		given:
+			at OAIHome
+			status(Data.OAI_INSTRUCTION_NAME).equals("SUSPENDED")
+
+		when:
+			harvestNew(Data.OAI_INSTRUCTION_NAME).click()
+		then:
+			def statusValue = status(Data.OAI_INSTRUCTION_NAME)
+			statusValue.equals("IDLE") || statusValue.equals("AWAITING_RETRY")
+	}
+		
+	def "Harvest all" (){
+		given:
+			at OAIHome
+
+		when:
+			suspend(Data.OAI_INSTRUCTION_NAME).click()
+			harvestAll(Data.OAI_INSTRUCTION_NAME).click()
+		then:
+			def statusValue = status(Data.OAI_INSTRUCTION_NAME)
+			statusValue.equals("IDLE") || statusValue.equals("AWAITING_RETRY")
+	}
 	
 	def "Delete Testing instruction" (){
 		given:
@@ -88,4 +118,5 @@ class OAISpec extends GebReportingSpec {
 
 
 	}
+	
 }
