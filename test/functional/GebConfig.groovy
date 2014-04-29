@@ -12,7 +12,8 @@ import org.openqa.selenium.firefox.FirefoxDriver
 //import org.openqa.selenium.ie.InternetExplorerDriver
 
 atCheckWaiting = true
-baseUrl = 'http://testing.culturegrid.org.uk/dpp/'
+//baseUrl = 'http://testing.culturegrid.org.uk/dpp/'
+baseUrl = 'http://cgautodeploy.k-int.co.uk/dpp/user'
 driver = { new FirefoxDriver() }
 
 environments {
